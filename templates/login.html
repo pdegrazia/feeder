@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="stylesheet" href='/static/style1.css' /></head>
+<body>
+     <form action="./" method="POST">
+        {% if error_message %}
+         <h1>Wrong code!</h1>
+         {% endif %}
+         <input id="code" type="text" name="code_text" value="">
+         <input id="ok_button" type="submit" name="ok_button" value="OK">
+     </form>
+</body>
+</html>

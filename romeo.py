@@ -1,5 +1,7 @@
 from flask import Flask, render_template
 from flask import request, redirect, url_for
+import requests
+
 
 app = Flask(__name__)
 
@@ -48,11 +50,22 @@ def completed():
 @app.route('/romeo', methods=['GET','POST'])
 def romeo():
 	global fed
+
+	###load random animated gif via giphy api###
+	random_query_string = 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=funny+cat'
+
+	response = requests.request('GET',random_query_string)
+	gif_id = response.json()['data']['id']
+
+	id_query_string = 'http://api.giphy.com/v1/gifs/%s?api_key=dc6zaTOxFJmzC' % gif_id
+	response = requests.request('GET', id_query_string)
+	source = response.json()['data']['embed_url']
+
 	if request.method == 'GET':
 		if fed:
-			return '<h1>Romeo has already been fed!</h1>'
+			return render_template('romeo_fed.html', giphy=source)
 		else:
-			return render_template('template1.html')
+			return render_template('template1.html', giphy=source)
 
 	if request.method == 'POST':
 		print 'im here'

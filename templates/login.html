@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><link rel="stylesheet" href='/static/style1.css' /></head>
+    <head>
+        <link rel="stylesheet" media="screen" href = "{{ url_for('static', filename='bootstrap.min.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
 <body>
+     {% if entries %}
+     <h1>{{ entries }}</h1>
+     {% endif %}
+     <h1>Are you already registered?</h1>
+     <h2>Enter code here</h2>
      <form action="./" method="POST">
         {% if error_message %}
          <h1>Wrong code!</h1>
          {% endif %}
-         <input id="code" type="text" name="code_text" value="">
-         <input id="ok_button" type="submit" name="ok_button" value="OK">
+         <input id="code" type="text" name="submit" value="">
+         <input id="ok_button" type="submit" name="submit" value="OK">
      </form>
 </body>
 </html>

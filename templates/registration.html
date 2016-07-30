@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="stylesheet" href='/static/style1.css' /></head>
+<body>
+     {% if error_message%}
+     <h1>Sorry, name has already been taken...</h1>
+     <h2>Choose another one</h2>
+     {% endif %}
+     <h2>Insert your pet's name here</h2>
+     <form action="./registration" method="POST">
+         <input id="pet_name" type="text" name="pet_name" value="">
+         <input id="ok_button" type="submit" name="ok_button" value="OK">
+     </form>
+</body>
+</html>
